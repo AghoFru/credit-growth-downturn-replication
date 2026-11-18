@@ -1,0 +1,57 @@
+{
+  "analysis": "JST 2013 Table 8 independent Python reproduction",
+  "command": "uv run python experiments/reproduce_jst_table8.py",
+  "random_seed": null,
+  "specification": {
+    "source_table": "table8.tex",
+    "panel": "private.dta, original author archive vintage",
+    "sample": "core == 1 and complete outcome, contemporaneous controls, and one lag",
+    "horizons": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "country_effects": "13 demeaned country indicators, no constant",
+    "standard_errors": "classical OLS, matching Stata reg default",
+    "rhs_standardization": "full-panel sample standard deviation, ddof=1",
+    "reproduction_check": "all 20 coefficients and standard errors match published three-decimal values"
+  },
+  "inputs": {
+    "author_archive": {
+      "path": "runs/jst-2013-benchmark-01/source/WCBB_replication.zip",
+      "sha256": "5e61b6492115bf2adc13ac63f86bb4e7846dda47c5b0c07dab687ed1dd298899",
+      "source": "https://www.moritzschularick.com/academic/datasets-and-codes/"
+    },
+    "panel": {
+      "path": "runs/jst-2013-benchmark-01/source/archive/WCBB_replication_14aug2015/data/private.dta",
+      "sha256": "8f0346f6763d0debfadd381adfa32b02c5e81057acabe8396fbe50514e9c6908"
+    },
+    "regression_source": {
+      "path": "runs/jst-2013-benchmark-01/source/archive/WCBB_replication_14aug2015/programs/AMTregressions_Oct2012.do",
+      "sha256": "350e993d85bdc9de52562cea73e83381d11fb8422524885257ee3dc06ecb6cbb"
+    },
+    "published_table": {
+      "path": "runs/jst-2013-benchmark-01/source/archive/WCBB_replication_14aug2015/tables/table8.tex",
+      "sha256": "4fa3d8cce35d073bed7fbe9160d8d0916ef97134f8fef7b26245b7ea08770977"
+    }
+  },
+  "code": {
+    "path": "experiments/reproduce_jst_table8.py",
+    "sha256": "7f899ff123b0f81d34d9e2d5301966bf5553b32ea2625acefc91c11d96ce76e3"
+  },
+  "output": {
+    "path": "runs/jst-2013-benchmark-01/results/jst_table8_reproduction.csv",
+    "sha256": "72d65cdf34f0183041715764a9693318058f7d5de113e16d908eaddbf1d218d8"
+  },
+  "environment": {
+    "python": "3.14.6",
+    "pandas": "3.1.1",
+    "numpy": "2.5.4",
+    "statsmodels": "0.15.0",
+    "platform": "macOS-26.1-arm64-arm-64bit-Mach-O",
+    "code_version": "not recorded, workspace has no project Git metadata",
+    "author_archive_license": "no redistribution license was identified in the downloaded archive"
+  }
+}

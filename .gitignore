@@ -1,0 +1,23 @@
+# Third-party data. Do not redistribute. Run experiments/acquire_data.py to download.
+data/raw/
+runs/jst-2013-benchmark-01/source/WCBB_replication.zip
+runs/jst-2013-benchmark-01/source/archive/
+# Full copies of the JST panel (CC BY-NC-SA 4.0).
+data/processed/jst_macrofinancial_panel.csv
+runs/historical-panel-welfare-01/output_snapshot.zip
+# Local build and tool output.
+.venv/
+.ruff_cache/
+__pycache__/
+.DS_Store
+paper/output/pdf/*.aux
+paper/output/pdf/*.log
+paper/output/pdf/*.out
+# LTV replication source (Mendeley archive and extracted panel).
+runs/policy-ltv-replication-01/source/
+# Derived from Kim and Kung redeployability data, no license stated.
+data/processed/asset_redeployability.csv
+# Large structural simulation outputs.
+runs/**/*.npz
+# Validation runs from a second host. Folder names and metadata contain its private name.
+runs/structural-validation-[!0-9]*/

@@ -1,0 +1,21 @@
+sample,horizon,term,coefficient_raw_units,classical_standard_error,clustered_standard_error,observations,countries
+"R6 Table 8 common sample, N=116",1,normal_excess_credit,-0.1878975065,0.1777636155,0.1761505725,116,14
+"R6 Table 8 common sample, N=116",1,financial_excess_credit,-0.2466674883,0.2529452400,0.2043855117,116,14
+"R6 Table 8 common sample, N=116",2,normal_excess_credit,-0.2898607629,0.3140345854,0.3014967726,116,14
+"R6 Table 8 common sample, N=116",2,financial_excess_credit,-0.3146531571,0.4468493362,0.5116455825,116,14
+"R6 Table 8 common sample, N=116",3,normal_excess_credit,-0.2761801936,0.4078908567,0.2348992128,116,14
+"R6 Table 8 common sample, N=116",3,financial_excess_credit,-0.2496917933,0.5804002713,0.6879315404,116,14
+"R6 Table 8 common sample, N=116",4,normal_excess_credit,-0.4020732022,0.5428250290,0.3819119057,116,14
+"R6 Table 8 common sample, N=116",4,financial_excess_credit,-1.0422090707,0.7724021976,1.1819255300,116,14
+"R6 Table 8 common sample, N=116",5,normal_excess_credit,-0.4148085148,0.5543704454,0.4674707979,116,14
+"R6 Table 8 common sample, N=116",5,financial_excess_credit,-1.1546157431,0.7888305208,1.4103866146,116,14
+"Fixed bridge sample, N=94",1,normal_excess_credit,-0.2417947585,0.2297101071,0.2509756266,94,14
+"Fixed bridge sample, N=94",1,financial_excess_credit,-0.1054257605,0.2867037233,0.2072076442,94,14
+"Fixed bridge sample, N=94",2,normal_excess_credit,-0.4589983938,0.4221242484,0.3977073940,94,14
+"Fixed bridge sample, N=94",2,financial_excess_credit,-0.1814314769,0.5268579394,0.6749071096,94,14
+"Fixed bridge sample, N=94",3,normal_excess_credit,-0.1912641222,0.5577611628,0.4730651818,94,14
+"Fixed bridge sample, N=94",3,financial_excess_credit,0.1498088214,0.6961478713,0.6413052301,94,14
+"Fixed bridge sample, N=94",4,normal_excess_credit,-0.1032228687,0.7085406209,0.4348680690,94,14
+"Fixed bridge sample, N=94",4,financial_excess_credit,-0.0436871233,0.8843373792,0.9003566912,94,14
+"Fixed bridge sample, N=94",5,normal_excess_credit,0.0619975919,0.6840211425,0.3909140268,94,14
+"Fixed bridge sample, N=94",5,financial_excess_credit,0.0371150333,0.8537343472,1.1591843849,94,14

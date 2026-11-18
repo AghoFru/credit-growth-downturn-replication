@@ -1,0 +1,81 @@
+sample,horizon,term,coefficient,standard_error,observations,normal_recessions,financial_recessions
+original full sample,1,normal_recession,-1.2713083895,0.3598912090,121,92,29
+original full sample,1,financial_recession,-2.8279244451,0.5742129194,121,92,29
+original full sample,1,normal_excess_credit,-0.2644044647,0.1660758216,121,92,29
+original full sample,1,financial_excess_credit,-0.4009094041,0.2131714633,121,92,29
+original full sample,2,normal_recession,0.6926525107,0.6438164623,121,92,29
+original full sample,2,financial_recession,-4.1353127558,1.0272207855,121,92,29
+original full sample,2,normal_excess_credit,-0.6837170444,0.2970963038,121,92,29
+original full sample,2,financial_excess_credit,-0.9912873910,0.3813466235,121,92,29
+original full sample,3,normal_recession,3.1787789295,0.8689255359,121,92,29
+original full sample,3,financial_recession,-3.5856794489,1.3863863754,121,92,29
+original full sample,3,normal_excess_credit,-0.7710089908,0.4009754024,121,92,29
+original full sample,3,financial_excess_credit,-0.3737667624,0.5146836694,121,92,29
+original full sample,4,normal_recession,3.8383025652,1.1222193343,121,92,29
+original full sample,4,financial_recession,-2.7505292119,1.7905212022,121,92,29
+original full sample,4,normal_excess_credit,-0.9320822912,0.5178606572,121,92,29
+original full sample,4,financial_excess_credit,-1.2980696877,0.6647151464,121,92,29
+original full sample,5,normal_recession,4.8129532552,1.1971776879,121,92,29
+original full sample,5,financial_recession,-1.3647817396,1.9101186082,121,92,29
+original full sample,5,normal_excess_credit,-0.7114950808,0.5524510274,121,92,29
+original full sample,5,financial_excess_credit,-0.8954558978,0.7091146247,121,92,29
+original common sample,1,normal_recession,-1.2186343692,0.3780578353,116,88,28
+original common sample,1,financial_recession,-2.8543955391,0.5931207011,116,88,28
+original common sample,1,normal_excess_credit,-0.2999644400,0.1714028170,116,88,28
+original common sample,1,financial_excess_credit,-0.4048313948,0.2165754132,116,88,28
+original common sample,2,normal_recession,0.5497320550,0.6599445091,116,88,28
+original common sample,2,financial_recession,-4.0738370572,1.0353620884,116,88,28
+original common sample,2,normal_excess_credit,-0.6448641247,0.2992038185,116,88,28
+original common sample,2,financial_excess_credit,-0.9801798505,0.3780579091,116,88,28
+original common sample,3,normal_recession,3.1618623581,0.9068670320,116,88,28
+original common sample,3,financial_recession,-3.3146307572,1.4227495363,116,88,28
+original common sample,3,normal_excess_credit,-0.7879113148,0.4111528699,116,88,28
+original common sample,3,financial_excess_credit,-0.4202837243,0.5195107305,116,88,28
+original common sample,4,normal_recession,3.3949099587,1.1593537907,116,88,28
+original common sample,4,financial_recession,-2.8111225309,1.8188665039,116,88,28
+original common sample,4,normal_excess_credit,-0.8599547981,0.5256246191,116,88,28
+original common sample,4,financial_excess_credit,-1.2955342830,0.6641510975,116,88,28
+original common sample,5,normal_recession,4.3218915198,1.2409180440,116,88,28
+original common sample,5,financial_recession,-1.4958806507,1.9468295895,116,88,28
+original common sample,5,normal_excess_credit,-0.6482494702,0.5626039949,116,88,28
+original common sample,5,financial_excess_credit,-0.9010656462,0.7108762550,116,88,28
+R6 all complete original-date events,1,normal_recession,-1.3509711411,0.3450342792,148,116,32
+R6 all complete original-date events,1,financial_recession,-2.9601693882,0.5652100064,148,116,32
+R6 all complete original-date events,1,normal_excess_credit,-0.1768220946,0.1431480301,148,116,32
+R6 all complete original-date events,1,financial_excess_credit,-0.3155352267,0.2171003439,148,116,32
+R6 all complete original-date events,2,normal_recession,0.5384889096,0.6032965077,148,116,32
+R6 all complete original-date events,2,financial_recession,-4.1335334296,0.9882763640,148,116,32
+R6 all complete original-date events,2,normal_excess_credit,-0.3406384732,0.2502960193,148,116,32
+R6 all complete original-date events,2,financial_excess_credit,-0.3615199716,0.3796025125,148,116,32
+R6 all complete original-date events,3,normal_recession,4.0472692426,0.8134056115,148,116,32
+R6 all complete original-date events,3,financial_recession,-1.2995893176,1.3324617828,148,116,32
+R6 all complete original-date events,3,normal_excess_credit,-0.3942377747,0.3374662111,148,116,32
+R6 all complete original-date events,3,financial_excess_credit,-0.3312286090,0.5118060686,148,116,32
+R6 all complete original-date events,4,normal_recession,4.9984523504,1.1362481478,148,116,32
+R6 all complete original-date events,4,financial_recession,-0.3338477806,1.8613188936,148,116,32
+R6 all complete original-date events,4,normal_excess_credit,-0.6620462963,0.4714073175,148,116,32
+R6 all complete original-date events,4,financial_excess_credit,-0.8095309695,0.7149430607,148,116,32
+R6 all complete original-date events,5,normal_recession,5.6932238875,1.2452539817,148,116,32
+R6 all complete original-date events,5,financial_recession,0.9758402019,2.0398843051,148,116,32
+R6 all complete original-date events,5,normal_excess_credit,-0.5860207374,0.5166317236,148,116,32
+R6 all complete original-date events,5,financial_excess_credit,-1.0222311194,0.7835310401,148,116,32
+R6 common sample,1,normal_recession,-1.2564520115,0.4965476219,116,88,28
+R6 common sample,1,financial_recession,-2.7808749888,0.7521172744,116,88,28
+R6 common sample,1,normal_excess_credit,-0.1878975065,0.1777636155,116,88,28
+R6 common sample,1,financial_excess_credit,-0.2466674883,0.2529452400,116,88,28
+R6 common sample,2,normal_recession,0.1785677463,0.8771937168,116,88,28
+R6 common sample,2,financial_recession,-4.3941079076,1.3286793014,116,88,28
+R6 common sample,2,normal_excess_credit,-0.2898607629,0.3140345854,116,88,28
+R6 common sample,2,financial_excess_credit,-0.3146531571,0.4468493362,116,88,28
+R6 common sample,3,normal_recession,2.8430105710,1.1393627113,116,88,28
+R6 common sample,3,financial_recession,-3.1651625526,1.7257848777,116,88,28
+R6 common sample,3,normal_excess_credit,-0.2761801936,0.4078908567,116,88,28
+R6 common sample,3,financial_excess_credit,-0.2496917933,0.5804002713,116,88,28
+R6 common sample,4,normal_recession,2.8193085118,1.5162747254,116,88,28
+R6 common sample,4,financial_recession,-3.0597948517,2.2966909183,116,88,28
+R6 common sample,4,normal_excess_credit,-0.4020732022,0.5428250290,116,88,28
+R6 common sample,4,financial_excess_credit,-1.0422090707,0.7724021976,116,88,28
+R6 common sample,5,normal_recession,3.4687929871,1.5485245706,116,88,28
+R6 common sample,5,financial_recession,-1.8570460655,2.3455395374,116,88,28
+R6 common sample,5,normal_excess_credit,-0.4148085148,0.5543704454,116,88,28
+R6 common sample,5,financial_excess_credit,-1.1546157431,0.7888305208,116,88,28

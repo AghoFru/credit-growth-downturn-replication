@@ -1,0 +1,27 @@
+family,label,coefficient,cluster_se,p_value,countries,family_size,holm_p_value
+"severity outcomes, core predictors",peak_to_trough_pct,0.093262,0.104837,0.386105,18,9,1.000000
+"severity outcomes, plus equity returns",peak_to_trough_pct,0.055591,0.125090,0.663092,16,9,1.000000
+"severity outcomes, core predictors",cumulative_loss_5y_pct_gdp_years,-0.004942,0.440940,0.991187,18,9,1.000000
+"severity outcomes, plus equity returns",cumulative_loss_5y_pct_gdp_years,-0.218849,0.502350,0.669294,16,9,1.000000
+"severity outcomes, core predictors",cumulative_loss_10y_pct_gdp_years,-0.131374,0.791536,0.870135,18,9,1.000000
+"severity outcomes, plus equity returns",cumulative_loss_10y_pct_gdp_years,-0.275585,0.970423,0.780305,16,9,1.000000
+"severity outcomes, core predictors",cumulative_loss_vs_peak_5y_pct_gdp_years,0.191572,0.357802,0.599299,18,9,1.000000
+"severity outcomes, plus equity returns",cumulative_loss_vs_peak_5y_pct_gdp_years,0.020248,0.409093,0.961178,16,9,1.000000
+"severity outcomes, core predictors",cumulative_loss_vs_peak_10y_pct_gdp_years,0.331606,0.494049,0.511111,18,9,1.000000
+"severity outcomes, plus equity returns",cumulative_loss_vs_peak_10y_pct_gdp_years,0.171354,0.592659,0.776441,16,9,1.000000
+"severity outcomes, core predictors",recovery_years,0.021212,0.025325,0.413885,18,9,1.000000
+"severity outcomes, plus equity returns",recovery_years,0.015522,0.029254,0.603471,16,9,1.000000
+"severity outcomes, core predictors",scar_5y_pct,-0.007414,0.149397,0.961000,18,9,1.000000
+"severity outcomes, plus equity returns",scar_5y_pct,-0.061010,0.179077,0.738061,16,9,1.000000
+"severity outcomes, core predictors",scar_10y_pct,-0.175571,0.173695,0.326283,18,9,1.000000
+"severity outcomes, plus equity returns",scar_10y_pct,-0.125767,0.194100,0.526811,16,9,1.000000
+"severity outcomes, core predictors",unemployment_increase_pp,0.042778,0.046497,0.370432,18,9,1.000000
+"severity outcomes, plus equity returns",unemployment_increase_pp,0.016973,0.050385,0.740887,16,9,1.000000
+event-rule comparison,"annual, full R6 coverage | peak_to_trough_pct",0.093262,0.104837,0.386105,18,8,1.000000
+event-rule comparison,"annual, full R6 coverage | cumulative_loss_5y_pct_gdp_years",-0.004942,0.440940,0.991187,18,8,1.000000
+event-rule comparison,"annual, common country-period coverage | peak_to_trough_pct",-0.076021,0.158415,0.639284,14,8,1.000000
+event-rule comparison,"annual, common country-period coverage | cumulative_loss_5y_pct_gdp_years",-1.097280,0.445748,0.028580,14,8,0.228638
+event-rule comparison,"JST, common country-period coverage | peak_to_trough_pct",0.030730,0.095192,0.751966,14,8,1.000000
+event-rule comparison,"JST, common country-period coverage | cumulative_loss_5y_pct_gdp_years",-0.013242,0.431909,0.976006,14,8,1.000000
+event-rule comparison,exact-date overlap | peak_to_trough_pct,-0.010704,0.124364,0.932720,14,8,1.000000
+event-rule comparison,exact-date overlap | cumulative_loss_5y_pct_gdp_years,-0.400692,0.500876,0.438096,14,8,1.000000

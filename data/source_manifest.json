@@ -1,0 +1,16 @@
+[
+  {
+    "path": "data/raw/JSTdatasetR6.dta",
+    "url": "https://www.macrohistory.net/app/download/9834512469/JSTdatasetR6.dta?t=1720600177",
+    "sha256": "b0ebb74a8d1b5b1bc9033fc46a6dcc578736afff8ce1e1086b7840f2649e79b3",
+    "license": "CC BY-NC-SA 4.0, Jorda-Schularick-Taylor Macrohistory Database release 6",
+    "used_by_paper": true
+  },
+  {
+    "path": "runs/jst-2013-benchmark-01/source/WCBB_replication.zip",
+    "url": "https://www.moritzschularick.com/app/download/12556526299/WCBB_replication_14aug2015.zip.zip?t=1763503201",
+    "sha256": "5e61b6492115bf2adc13ac63f86bb4e7846dda47c5b0c07dab687ed1dd298899",
+    "license": "No license stated in the archive or on the download page. Not redistributed.",
+    "used_by_paper": true
+  }
+]

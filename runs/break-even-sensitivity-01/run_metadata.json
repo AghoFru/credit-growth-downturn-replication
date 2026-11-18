@@ -1,0 +1,32 @@
+{
+  "run_id": "break-even-sensitivity-01",
+  "command": "uv run python experiments/break_even_sensitivity.py",
+  "random_seed": null,
+  "annual_cost_pct": 0.1,
+  "war_start_years": "1914-1918 and 1939-1945",
+  "code_version": "No Git repository. SHA-256 hashes identify the executed source.",
+  "source_sha256": {
+    "experiments/break_even_sensitivity.py": "124078647c40179ed71ea6c06acf84ff9f0b5d60003b69d396f31c5cf0728659",
+    "experiments/run_severity_analysis.py": "cbba07f601a65929394deaf1c5f4459148b2bbeec5f7547c4b03645a79848a36"
+  },
+  "input_sha256": {
+    "data/raw/JSTdatasetR6.dta": "b0ebb74a8d1b5b1bc9033fc46a6dcc578736afff8ce1e1086b7840f2649e79b3"
+  },
+  "output_sha256": {
+    "runs/break-even-sensitivity-01/results/break_even_sensitivity.csv": "ae9ba053e0a3672ddb1d68d5e30f26523726a1bfe61b490ad0033932dc4e0bc7",
+    "runs/break-even-sensitivity-01/results/episode_flags.csv": "f7e1a6c334f1b88bb454e12c9bf3c5b4928511d88d25c1bf9e41db9b6b2d8fcc"
+  },
+  "diagnostics": {
+    "complete_episodes": 274,
+    "share_next_start_within_10y": 0.6642335766423357,
+    "war_start_episodes": 28,
+    "war_start_mean_trend_loss_3pct_floored": 185.28531515340202,
+    "other_mean_trend_loss_3pct_floored": 75.56156199394276
+  },
+  "environment": {
+    "python": "3.14.6",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "platform": "Darwin-arm64"
+  }
+}

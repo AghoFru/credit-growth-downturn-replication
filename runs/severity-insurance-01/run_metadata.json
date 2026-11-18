@@ -1,0 +1,40 @@
+{
+  "run_id": "severity-insurance-01",
+  "objective": "Measure historical downturn severity and recovery, then calculate a frequency-fixed output break-even frontier.",
+  "commands": [
+    "uv run python experiments/run_severity_analysis.py",
+    "uv run python -m unittest discover -s tests -v"
+  ],
+  "seed": 17,
+  "bootstrap_draws": 1000,
+  "code_version": "No Git repository is present. SHA-256 hashes identify the executed source.",
+  "source_sha256": {
+    "experiments/run_severity_analysis.py": "cbba07f601a65929394deaf1c5f4459148b2bbeec5f7547c4b03645a79848a36",
+    "tests/test_severity_analysis.py": "baa42cba4fe4446e65a2ce733c543585ccebccb054e01b4e4e3827062cf576d9"
+  },
+  "input_sha256": {
+    "data/raw/JSTdatasetR6.dta": "b0ebb74a8d1b5b1bc9033fc46a6dcc578736afff8ce1e1086b7840f2649e79b3"
+  },
+  "output_sha256": {
+    "results/downturn_episodes.csv": "57b6c3e2b4fd9c360133a3bbf256d3210f6a998e345d6cb50bf6872e14a45b97",
+    "results/downturn_severity_associations.csv": "5f32e8ecfe83ecadb7785063f06bb150934d3c7f9559d4d33fe6ebabed8c8f21",
+    "results/severity_insurance_frontier.csv": "f915eb817f8adb9e8b228a8504d2b353e2c5279d34b017afc0ba32346d0b90da",
+    "results/severity_insurance_frontier_uncertainty.csv": "6332b850350a59722b6a8910cfc0af79acc55b0c4d59ac0a94027d28041f9691",
+    "results/severity_insurance_frontier.png": "5983a6edee7139c05d7c828f40f544b2d06270c743c83bde93ec20e60b6c7912"
+  },
+  "environment": {
+    "python": "3.14.6",
+    "platform": "Darwin-arm64",
+    "uv": "uv 0.12.11 (Homebrew 2026-09-08 aarch64-apple-darwin)",
+    "dependencies": "Resolved with the project uv.lock"
+  },
+  "summary": {
+    "episodes": 299,
+    "countries": 18,
+    "systemic_crisis_episodes": 59,
+    "association_rows": 135,
+    "frontier_rows": 120,
+    "frontier_uncertainty_rows": 120,
+    "complete_horizon_event_rate": 0.11445279866332497
+  }
+}

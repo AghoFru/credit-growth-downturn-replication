@@ -1,0 +1,52 @@
+{
+  "analysis": "R6 harmonized event-rule comparison",
+  "command": "uv run python experiments/compare_jst_r6_event_rules.py",
+  "random_seed": null,
+  "method": {
+    "event_rules": "Current annual output-decline episodes and original JST core Bry-Boschan peaks are dated on R6 country-year data.",
+    "common_coverage": "14 original JST countries and event years 1870-2002.",
+    "exact_match": "Same ISO country and event year.",
+    "outcomes": "R6 peak-to-trough decline and 5-year cumulative losses relative to a 5-year pre-event linear trend.",
+    "regression": "Current severity predictors with country and decade fixed effects and country-clustered standard errors.",
+    "interpretation": "Descriptive event construction comparison, not causal policy evidence.",
+    "limitations": [
+      "Original chronology dates come from an older data vintage and are applied to R6 output.",
+      "The original JST event count differs from the 121 complete observations in Table 8 because this cohort uses chronology flags before regression complete-case exclusions.",
+      "The common-date overlap and unmatched cohorts share event outcomes only when their country and year match exactly."
+    ]
+  },
+  "inputs": {
+    "original_panel": {
+      "path": "runs/jst-2013-benchmark-01/source/archive/WCBB_replication_14aug2015/data/private.dta",
+      "sha256": "8f0346f6763d0debfadd381adfa32b02c5e81057acabe8396fbe50514e9c6908"
+    },
+    "r6_panel": {
+      "path": "data/raw/JSTdatasetR6.dta",
+      "sha256": "b0ebb74a8d1b5b1bc9033fc46a6dcc578736afff8ce1e1086b7840f2649e79b3"
+    }
+  },
+  "code": {
+    "path": "experiments/compare_jst_r6_event_rules.py",
+    "sha256": "7b527508c6b90c586821f515937703ef1539aa7f64c4e7d0aaff8a88b7e45fd8"
+  },
+  "outputs": {
+    "event_concordance": {
+      "path": "runs/jst-r6-event-rules-01/results/event_rule_concordance.csv",
+      "sha256": "5932f9d2354aa75024004cec551c81d965903d41491146f5a53931b261035d59"
+    },
+    "associations": {
+      "path": "runs/jst-r6-event-rules-01/results/event_rule_associations.csv",
+      "sha256": "a9bf4c14b164c58f203f5adb2f884a489360033494334fabff2124141b7fb51f"
+    }
+  },
+  "environment": {
+    "python": "3.14.6",
+    "pandas": "3.1.1",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "statsmodels": "0.15.0",
+    "platform": "macOS-26.1-arm64-arm-64bit-Mach-O",
+    "code_version": "not recorded, workspace has no project Git metadata",
+    "original_archive_license": "no redistribution terms were identified in the downloaded archive"
+  }
+}

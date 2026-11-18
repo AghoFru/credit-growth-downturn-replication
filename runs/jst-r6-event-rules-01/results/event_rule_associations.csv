@@ -1,0 +1,9 @@
+sample,outcome,predictor,coefficient,cluster_se,ci_low_95,ci_high_95,n_events,countries,r_squared
+"annual, full R6 coverage",peak_to_trough_pct,credit_growth_3y,0.0932616571,0.1048374831,-0.1279260978,0.3144494120,178,18,0.4767503831
+"annual, full R6 coverage",cumulative_loss_5y_pct_gdp_years,credit_growth_3y,-0.0049424976,0.4409397998,-0.9352441560,0.9253591609,178,18,0.6397664443
+"annual, common country-period coverage",peak_to_trough_pct,credit_growth_3y,-0.0760209561,0.1584154593,-0.4182567490,0.2662148369,137,14,0.5215351669
+"annual, common country-period coverage",cumulative_loss_5y_pct_gdp_years,credit_growth_3y,-1.0972795825,0.4457484534,-2.0602605698,-0.1342985952,137,14,0.7273784870
+"JST, common country-period coverage",peak_to_trough_pct,credit_growth_3y,0.0307297362,0.0951920260,-0.1749201333,0.2363796056,126,14,0.3908906899
+"JST, common country-period coverage",cumulative_loss_5y_pct_gdp_years,credit_growth_3y,-0.0132422938,0.4319088836,-0.9463247083,0.9198401207,126,14,0.6011509147
+exact-date overlap,peak_to_trough_pct,credit_growth_3y,-0.0107044359,0.1243639580,-0.2793764327,0.2579675610,109,14,0.4477082606
+exact-date overlap,cumulative_loss_5y_pct_gdp_years,credit_growth_3y,-0.4006921458,0.5008764816,-1.4827699974,0.6813857057,109,14,0.7315765871

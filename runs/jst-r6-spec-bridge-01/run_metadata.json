@@ -1,0 +1,75 @@
+{
+  "analysis": "JST R6 predictor, control, and outcome specification bridge",
+  "command": "uv run python experiments/decompose_jst_r6_specification.py",
+  "random_seed": null,
+  "sample": {
+    "starting_common_events": 116,
+    "starting_normal": 88,
+    "starting_financial": 28,
+    "bridge_complete_cases": 94,
+    "bridge_countries": 14,
+    "key_sha256": "b3c6fd572e9ae2e00eb3145a99c08f9fda29ef6a842a05a4d5c9d581893a0266"
+  },
+  "model_sequence": {
+    "M0": "R6 JST Table 8 predictor and controls on the fixed bridge sample, standardized credit effects reported per within-type standard deviation.",
+    "M1": "Swap to three-year credit growth, retaining event-type slopes, JST controls, lags, country effects, and forward-growth outcomes.",
+    "M2": "Swap to current severity controls, retaining event-type slopes and country effects.",
+    "M3": "Add decade fixed effects to M2.",
+    "M4": "Replace event-type-specific credit slopes with one common slope and retain event-type intercepts.",
+    "M5": "Drop event-type intercepts to match the current severity regression form.",
+    "M6": "Keep M5 fixed and replace forward-growth outcomes with peak-to-trough and five-year cumulative losses."
+  },
+  "inference": "Country-clustered standard errors and t intervals with 13 degrees of freedom. Every bridge model uses the same 94 exact country-year keys.",
+  "limitations": [
+    "The fixed bridge sample is selected from original JST events with complete R6 Table 8 outcomes and predictors.",
+    "The 94-event sample is smaller than the 299-event release 6 analysis and does not explain every difference between the studies.",
+    "R6 tloans is the closest available match to original loans1, but the definitions are not proven identical.",
+    "The analysis is descriptive and does not identify causal effects."
+  ],
+  "inputs": {
+    "original_panel": {
+      "path": "runs/jst-2013-benchmark-01/source/archive/WCBB_replication_14aug2015/data/private.dta",
+      "sha256": "8f0346f6763d0debfadd381adfa32b02c5e81057acabe8396fbe50514e9c6908"
+    },
+    "r6_panel": {
+      "path": "data/raw/JSTdatasetR6.dta",
+      "sha256": "b0ebb74a8d1b5b1bc9033fc46a6dcc578736afff8ce1e1086b7840f2649e79b3"
+    },
+    "original_table8_code": {
+      "path": "runs/jst-2013-benchmark-01/source/archive/WCBB_replication_14aug2015/programs/AMTregressions_Oct2012.do",
+      "sha256": "350e993d85bdc9de52562cea73e83381d11fb8422524885257ee3dc06ecb6cbb"
+    }
+  },
+  "outputs": {
+    "fixed_keys": {
+      "path": "runs/jst-r6-spec-bridge-01/results/fixed_sample_keys.csv",
+      "sha256": "b3c6fd572e9ae2e00eb3145a99c08f9fda29ef6a842a05a4d5c9d581893a0266"
+    },
+    "sample_flow": {
+      "path": "runs/jst-r6-spec-bridge-01/results/sample_flow.csv",
+      "sha256": "f555802ad64d5be6a896f9b741cef9735ac292d935345cb245643ef63bc52da5"
+    },
+    "sample_selection": {
+      "path": "runs/jst-r6-spec-bridge-01/results/jst_r6_sample_selection.csv",
+      "sha256": "ac802690fff628e196af6cc02a33dc92e36bda66b2e647c5175a086a6974221f"
+    },
+    "estimates": {
+      "path": "runs/jst-r6-spec-bridge-01/results/jst_r6_specification_bridge.csv",
+      "sha256": "f70c72d1d3a34d0333204aed96ddecc49fe344b5083c27ebb5e5380db2ea07ab"
+    }
+  },
+  "code": {
+    "path": "experiments/decompose_jst_r6_specification.py",
+    "sha256": "f0f5f59844b716a7167220586eb1386b5def64cdbd059603fb0938bf0b282014"
+  },
+  "environment": {
+    "python": "3.14.6",
+    "pandas": "3.1.1",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "statsmodels": "0.15.0",
+    "platform": "macOS-26.1-arm64-arm-64bit-Mach-O",
+    "code_version": "not recorded, workspace has no project Git metadata",
+    "original_archive_license": "no redistribution terms were identified in the downloaded archive"
+  }
+}

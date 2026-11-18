@@ -1,0 +1,569 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage[round,authoryear]{natbib}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{microtype}
+\hypersetup{
+  hidelinks,
+  pdftitle={A Replication and Fragility Note on Credit Growth and Downturn Severity},
+  pdfauthor={Akufor Agho Fru}
+}
+\title{A Replication and Fragility Note on\\Credit Growth and Downturn Severity}
+\author{Akufor Agho Fru}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\citet{jst2013} report that recessions that follow credit-intensive expansions are deeper and
+have slower recoveries. I re-estimate their aggregate Table 8 in Python. All 20 coefficients
+and standard errors match the authors' archived output at three decimals, with 121 events.
+On release 6 of the Jord\`a-Schularick-Taylor database, the relation between pre-downturn
+credit growth and downturn severity is imprecise and moves with data vintage, episode
+dating, and controls. On the 116 events common to both vintages, the excess-credit
+coefficients move toward zero at horizons one to three, but none changes sign. With release
+6 outcomes and controls, the five-year cumulative-loss coefficient is $-1.097$ (SE 0.446)
+under an annual-decline rule, $-0.013$ (SE 0.432) under the JST chronology, and $-0.401$
+(SE 0.501) on dates common to both rules. A separate design regresses nine severity
+outcomes on three-year credit growth with house-price, other macro, country, and decade
+controls, not the JST design. On 144 to 178 complete-case episodes, every Holm-adjusted
+$p$-value is 1.000. By construction, a 0.1 percent annual output cost
+and the observed frequency of 0.114 downturns per country-year imply that restraint must
+avoid 0.87 GDP-percent-years of loss per downturn to break even. I do not express this as a
+share of measured loss. The loss measure floors yearly gaps at zero, counts overlapping
+windows, and includes war-year downturns, and it implies an annual trend loss of 4.5 to 11.9
+percent of GDP across corrections. The note does not estimate how any policy changes
+downturn losses.
+\end{abstract}
+
+\section{Introduction}
+Credit booms are a central concern of macroprudential policy because they predict financial
+crises. \citet{schularicktaylor2012} show that lagged credit growth predicts financial crises
+in 14 advanced economies from 1870 to 2008. \citet{gourinchasobstfeld2012} find that domestic
+credit expansion is among the most robust crisis predictors in advanced and emerging
+economies after 1973. \citet{greenwood2022} show that rapid three-year growth in credit and
+asset prices raises the probability of a crisis within three years to about 40 percent.
+\citet{msv2017} show that a rise in household debt to GDP predicts lower output growth over
+the medium run in 30 countries. \citet{sufitaylor2022} survey this evidence.
+
+A second claim concerns severity, not frequency. \citet{jst2013} use local projections on 14
+countries from 1870 to 2008. They find that recessions that follow larger credit build-ups
+are deeper and have slower recoveries, in normal recessions as well as in financial ones.
+\citet{claessens2012} find that recessions with financial disruptions, in particular house
+price busts, are longer and deeper. \citet{bridges2017} study 130 downturns in 26 advanced
+economies since the 1970s. They find that rapid credit growth before a recession predicts a
+deeper and longer downturn, with or without a banking crisis, and that credit growth
+predicts severity better than the level of debt. This evidence supports the severity link.
+The imprecise release 6 estimates below do not contradict it, because they use a different
+sample, period, and design.
+
+The literature already shows that this severity link depends on the type of credit, the
+features of the boom, and the dating of events. On credit type, \citet{jst2016mortgaging}
+find that real estate lending booms are followed by deeper recessions and slower
+recoveries. \citet{jkst2022} find that corporate debt booms do not show the same pattern,
+except when debt resolution is slow. \citet{mullerverner2024} find that credit to the
+non-tradable sector predicts slowdowns, while credit to the tradable sector does not.
+\citet{jst2016sovereigns} find that the risk comes mostly from private, not public, debt.
+On boom features, \citet{jst2015bubbles} find that asset price bubbles are most damaging
+when credit finances them, and \citet{krishnamurthymuir2025} find that crisis severity
+depends on credit losses interacted with prior credit growth. \citet{rsw2021} find that
+credit booms with house price booms and a rising loan-to-deposit ratio are much more likely
+to end in a systemic banking crisis than other credit booms. On dating,
+\citet{romerromer2017} find that the output cost of crises in advanced countries is moderate
+and sensitive to specification and sample. \citet{baron2021} show that bank equity declines
+identify banking crises that narrative chronologies miss. \citet{bordohaubrich2017} find
+that US recessions with financial crises are generally followed by fast recoveries, with
+three exceptions: the 1930s, the early 1990s, and the recovery after 2008. Their answer
+depends on how crises are defined. This note does
+not add a new dimension of fragility. It checks the aggregate Table 8 estimate itself.
+
+Cost-benefit work on boom restraint already exists. \citet{svensson2017} compares the costs
+and benefits of leaning against the wind with monetary policy. He uses estimated effects of
+the policy rate on the probability and size of crises, and he finds that costs exceed
+benefits for representative estimates. \citet{bgnn2020} estimate how macroprudential and
+monetary tightening shift the distribution of future output growth. They then compute net
+benefits with a loss function. Both papers do cost-benefit analysis with estimated policy
+effects. This note does not do that. It does not estimate the effect $D(m)$ of a policy $m$
+on downturn loss.
+
+This note asks a narrower question. Is the credit-severity association in \citet{jst2013}
+stable when the data are revised and when the episode definition changes? It also asks how
+large an avoided loss a costly restraint would need to break even. The contributions are
+these:
+\begin{enumerate}
+\item A check of the aggregate \citet{jst2013} Table 8 estimate. An independent Python
+  implementation matches the authors' archived output at three decimals (RQ1).
+\item A fragility analysis on release 6 data. It holds the original design fixed and varies
+  the data vintage, the episode dating rule, and the control set one at a time (RQ2).
+\item A conditional break-even calculation. It converts an annual output cost into the
+  avoided loss per downturn that the cost requires. It also shows why that loss should not
+  be expressed as a share of the measured loss per downturn (RQ3).
+\end{enumerate}
+\textbf{RQ1.} Does an independent implementation reproduce Table 8 of \citet{jst2013}?
+\textbf{RQ2.} On release 6 data, how sensitive is the credit-severity association to
+vintage, dating, and controls? \textbf{RQ3.} Given the observed downturn frequency and loss
+distribution, what avoided loss per downturn would a stated annual cost require?
+
+The note does not overturn \citet{jst2013}. Their archived estimates are matched. The finding
+is that the aggregate association is imprecise on revised data and depends on analyst
+choices, which is consistent with the literature above. The note makes no causal or policy
+claim. I found no published replication of \citet{jst2013} in the Institute for Replication
+reports and discussion papers or in the FORRT replication atlas. ReplicationWiki was
+unavailable when I checked. The nearest published replication I found is
+\citet{summers2017}, which replicates \citet{schularicktaylor2012}. I make no priority claim.
+
+\section{Data}
+The reproduction uses the authors' replication archive \citep{jstcode}. It contains the
+original panel (\texttt{private.dta}), the Stata programs, and the table output
+\texttt{table8.tex}. The fragility analysis uses release 6 of the Jord\`a-Schularick-Taylor
+Macrohistory Database \citep{jstdatabase}, available at
+\url{https://www.macrohistory.net/database/}. I downloaded the file on 4 November 2026 and
+confirmed on 18 November 2026 that the same URL served a file with the same SHA-256 hash. Release 6 has 2,718 country-year observations for
+18 advanced economies from 1870 to 2020. The main activity series is real GDP per capita.
+Credit is total loans to the non-financial private sector (\texttt{tloans}).
+
+Release 6 \texttt{tloans} is the closest available series to the original \texttt{loans1}.
+I could not confirm that the two definitions are identical. A vintage comparison therefore
+mixes data revision with any definition change.
+
+\section{RQ1: Reproduction of Table 8}
+Table 8 of \citet{jst2013} regresses the cumulative change in log real GDP per capita at
+horizons one to five on normal and financial recession indicators and on their interactions
+with excess credit. Excess credit is the change in the credit-to-GDP ratio per year of the
+preceding expansion. The model includes seven year-zero controls, their first lags, and
+country effects. I translated the Stata program to Python with classical OLS standard errors.
+
+All 20 coefficients and standard errors match the archive's \texttt{table8.tex} at three
+decimals. Each horizon uses 121 events, 92 normal and 29 financial. The normal-recession
+excess-credit coefficients are $-0.264$, $-0.684$, $-0.771$, $-0.932$, and $-0.711$ at
+horizons one to five. The financial-recession coefficients are $-0.401$, $-0.991$,
+$-0.374$, $-1.298$, and $-0.895$. I compared against the table file in the authors' archive,
+not against a scan of the journal page. I did not run Stata.
+
+\section{RQ2: Fragility on release 6 data}
+\subsection{Data vintage on a fixed event set}
+I hold the original event dates, recession labels, expansion durations, controls, lags,
+fixed effects, and horizons fixed, and replace the series with release 6. Five of the 121
+events lack complete release 6 inputs. Table~\ref{tab:vintage} uses the 116 common events.
+At horizons one to three, all six release 6 credit interactions are closer to zero than the
+original ones. At horizon two, the normal coefficient falls from $-0.645$ to $-0.290$ and the
+financial coefficient falls from $-0.980$ to $-0.315$. At horizons four and five, the
+financial coefficient stays large in magnitude, but its standard error rises. Release 6
+standard errors for the financial interaction are larger at every horizon. No coefficient
+changes sign. On all 148 release 6 events with complete inputs on the original dates, all
+ten excess-credit coefficients are also negative, from $-0.177$ to $-1.022$. The sign
+changes reported below come only from the smaller subsample, the control set, or the
+episode rule. I did not run a formal test of the coefficient difference between vintages.
+The two estimates use different data on the same events, so the standard errors in the
+table do not support a simple difference test.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Excess-credit coefficients of the Table 8 design on the 116 events common to the
+original data and release 6. Classical OLS standard errors are in parentheses. Each model
+has 88 normal and 28 financial recessions.}
+\label{tab:vintage}
+\begin{tabular}{lrrrr}
+\toprule
+Horizon & Normal, original & Normal, R6 & Financial, original & Financial, R6 \\
+\midrule
+1 & $-0.300$ (0.171) & $-0.188$ (0.178) & $-0.405$ (0.217) & $-0.247$ (0.253) \\
+2 & $-0.645$ (0.299) & $-0.290$ (0.314) & $-0.980$ (0.378) & $-0.315$ (0.447) \\
+3 & $-0.788$ (0.411) & $-0.276$ (0.408) & $-0.420$ (0.520) & $-0.250$ (0.580) \\
+4 & $-0.860$ (0.526) & $-0.402$ (0.543) & $-1.296$ (0.664) & $-1.042$ (0.772) \\
+5 & $-0.648$ (0.563) & $-0.415$ (0.554) & $-0.901$ (0.711) & $-1.155$ (0.789) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Using all 148 events changes the sample as well as the data, so Table~\ref{tab:vintage}
+uses only the common 116.
+
+\subsection{Episode dating}
+The second test changes the episode rule. The annual-decline rule starts an episode at a
+local output peak when real GDP per capita falls in the next year. The JST chronology uses
+the Bry-Boschan peaks from the original archive. Both samples use the same release 6
+outcomes, seven pre-peak predictors, country and decade effects, and country-clustered
+standard errors. The predictors are three-year credit growth, credit to GDP, house-price
+growth, investment share, prior real growth, inflation, and the short rate. In this note,
+three-year credit growth is the change in private credit to GDP over the three years before
+the peak, in percentage points. Inference uses a
+$t$ distribution with one fewer degree of freedom than the number of clusters.
+
+In the shared coverage of 14 countries from 1870 to 2002, the annual rule finds 225 events
+and the JST chronology has 223 peaks. Of these, 182 have the same country and year.
+Table~\ref{tab:rules} reports the credit-growth coefficient for two outcomes. The five-year
+cumulative-loss coefficient is $-1.097$ (SE 0.446) under the annual rule, $-0.013$ (SE 0.432)
+under the JST chronology, and $-0.401$ (SE 0.501) on the matched dates. Only the annual-rule
+estimate has a 95 percent interval that excludes zero ($-2.06$ to $-0.13$, raw $p=0.029$).
+After a Holm adjustment across the eight tests in the table, its $p$-value is 0.229. The
+two full-coverage annual-rule tests also appear in the nine-outcome family of
+Table~\ref{tab:severity}, so they enter two Holm families. The
+sign is also the opposite of the original finding, because a negative coefficient means
+smaller losses after faster credit growth. Which events enter the sample changes the
+estimate. This comparison does not separate the dating rule from sample composition.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Coefficient on three-year credit growth under two episode rules, release 6 data.
+Country-clustered standard errors are in parentheses. All models include the six other
+predictors and country and decade effects. Outcomes are in percent and GDP-percent-years.}
+\label{tab:rules}
+\begin{tabular}{lrrr}
+\toprule
+Event sample & Peak-to-trough & Five-year loss & Events \\
+\midrule
+Annual rule, full R6 coverage & 0.093 (0.105) & $-0.005$ (0.441) & 178 \\
+Annual rule, shared coverage & $-0.076$ (0.158) & $-1.097$ (0.446) & 137 \\
+JST chronology, shared coverage & 0.031 (0.095) & $-0.013$ (0.432) & 126 \\
+Matched dates & $-0.011$ (0.124) & $-0.401$ (0.501) & 109 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Controls on a fixed event set}
+The third test holds the event set fixed and changes the specification one step at a time.
+Of the 116 common events, 21 lack house-price growth and one lacks three-year credit growth.
+That leaves 94 events in 14 countries. The base is the release 6 Table 8 design with
+five-year GDP growth as the outcome. On these 94 events, the five-year excess-credit
+coefficients are 0.062 for normal recessions and 0.037 for financial recessions. On the 116
+events they were $-0.415$ and $-1.155$. The sample change alone moves both coefficients from
+negative to near zero.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Specification bridge on the fixed 94-event release 6 sample. Coefficients are per
+unit of the predictor. Country-clustered standard errors are in parentheses. Each row
+changes one element relative to the row above. In the first six rows the outcome is
+five-year GDP growth, so a negative coefficient means weaker growth after more credit. In
+the last two rows the outcome is a loss, so the sign convention flips: a positive
+coefficient means a larger loss.}
+\label{tab:bridge}
+\begin{tabular}{p{4.2cm}p{2.6cm}rrr}
+\toprule
+Model & Predictor & Normal & Financial & Common \\
+\midrule
+R6 Table 8 design & Excess credit & 0.062 (0.391) & 0.037 (1.159) & \\
+Switch predictor & 3-year credit & 0.118 (0.170) & 0.169 (0.312) & \\
+Current controls & 3-year credit & $-0.217$ (0.092) & $-0.135$ (0.132) & \\
+Add decade effects & 3-year credit & 0.030 (0.153) & $-0.127$ (0.335) & \\
+Common slope & 3-year credit & & & $-0.001$ (0.184) \\
+Drop event-type intercepts & 3-year credit & & & $-0.122$ (0.188) \\
+Outcome: peak-to-trough & 3-year credit & & & 0.028 (0.124) \\
+Outcome: five-year loss & 3-year credit & & & 0.230 (0.427) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:bridge} shows one interval that excludes zero. Under the current controls
+without decade effects, the normal-recession coefficient is $-0.217$ (95 percent interval
+$-0.416$ to $-0.018$). Adding decade effects moves it to 0.030. The bridge reports 12
+coefficients without a multiple-testing adjustment, so a single interval that excludes zero
+is weak evidence.
+
+\subsection{All downturns on release 6}
+The last test applies the annual-decline rule to the full release 6 panel. It finds 299
+downturns in 18 countries. Of these, 59 overlap a systemic banking crisis year. The median
+peak-to-trough decline is 3.11 percent, the mean is 6.27 percent, and the 90th percentile is
+14.79 percent. The median recovery to the prior peak takes three years.
+
+Each of nine severity outcomes is regressed on the seven pre-peak predictors with country
+and decade effects. The outcomes are peak-to-trough decline, five- and ten-year cumulative
+loss against a pre-episode linear trend, the same against a flat prior-peak path, recovery
+years, five- and ten-year scarring, and the unemployment increase. Complete-case samples
+range from 144 to 178 episodes. Table~\ref{tab:severity} reports the credit-growth
+coefficients.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Coefficient on three-year credit growth for nine severity outcomes, release 6
+annual-decline episodes. Country-clustered standard errors are in parentheses. The Holm
+adjustment is across the nine outcomes.}
+\label{tab:severity}
+\begin{tabular}{lrrrr}
+\toprule
+Outcome & Coefficient & $p$ & Holm $p$ & Episodes \\
+\midrule
+Peak-to-trough decline (\%) & 0.093 (0.105) & 0.386 & 1.000 & 178 \\
+Five-year loss, trend & $-0.005$ (0.441) & 0.991 & 1.000 & 178 \\
+Ten-year loss, trend & $-0.131$ (0.792) & 0.870 & 1.000 & 176 \\
+Five-year loss, prior peak & 0.192 (0.358) & 0.599 & 1.000 & 178 \\
+Ten-year loss, prior peak & 0.332 (0.494) & 0.511 & 1.000 & 176 \\
+Recovery (years) & 0.021 (0.025) & 0.414 & 1.000 & 161 \\
+Five-year scarring (\%) & $-0.007$ (0.149) & 0.961 & 1.000 & 178 \\
+Ten-year scarring (\%) & $-0.176$ (0.174) & 0.326 & 1.000 & 176 \\
+Unemployment increase (pp) & 0.043 (0.046) & 0.370 & 1.000 & 144 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+No raw $p$-value is below 0.32, and every Holm-adjusted $p$-value is 1.000. Adding
+three-year equity returns as a control reduces the samples to 130 to 161 episodes in 16
+countries. All nine Holm-adjusted $p$-values for credit growth stay at 1.000. Wide intervals
+do not show that the true association is zero. They show that release 6 with this design
+cannot distinguish the original effect sizes from zero.
+
+\section{RQ3: Conditional break-even arithmetic}
+Let $c$ be an annual output cost of restraint in percent of GDP. Let $\lambda$ be the annual
+downturn frequency, and let $\Delta D$ be the discounted output loss avoided per downturn.
+Holding $\lambda$ fixed, restraint breaks even in output terms when $c \le \lambda\,\Delta D$.
+The required avoided loss is $c/\lambda$. This number is arithmetic by construction. It
+depends only on the chosen cost and the counted frequency. It is not an estimate of any
+policy effect, and it says nothing about whether any policy achieves it.
+
+The frequency is 0.114 downturns per eligible country-year, counting the 274 downturns with
+complete ten-year outcomes. A country-cluster bootstrap with 1,000 draws gives a 95 percent
+interval of 0.106 to 0.123. For $c=0.1$ percent, the required avoided loss is 0.87
+GDP-percent-years per downturn (interval 0.81 to 0.95). This interval reflects only the
+uncertainty in the frequency, because $c$ is fixed by assumption. For $c=0.5$ percent, it is
+4.37. The original JST chronology gives a similar number. Counting recessions with complete
+five-year windows, it has 207 recessions in 1,442 eligible country-years, and the same
+arithmetic gives 0.70 for $c=0.1$ percent. With complete ten-year windows, it has 201
+recessions in 1,372 country-years and gives 0.68.
+
+An earlier draft also divided 0.87 by the mean measured ten-year loss per downturn. I do
+not report that share as a result, because the measured loss is too large to be credible.
+Three features of the loss measure inflate it. First, yearly output gaps are floored at
+zero, so years above the counterfactual path never offset years below it. Second, the
+ten-year windows overlap: 68 percent of the 299 downturns (66 percent of the 274 with
+complete windows) are followed by another downturn in the same country within ten years, so
+the same lost year can count more than once. Third, 28 complete episodes start in war years
+(1914 to 1918 and 1939 to 1945). At a 3 percent discount rate, their mean loss against the
+linear trend is 185 GDP-percent-years, against 76 for the other episodes.
+
+The product $\lambda$ times the mean loss is a sanity check. Under the baseline measure at a
+0 percent discount rate, it implies that the average country loses 11.9 percent of GDP every
+year against its pre-downturn trend. Table~\ref{tab:sensitivity} recomputes the mean loss
+under alternative definitions. Signed gaps remove the floor. De-duplicated years assign each
+post-peak year only to the latest downturn whose window covers it, which keeps every episode
+and the same frequency. The non-overlapping subset keeps only downturns that start more than
+ten years after the previous kept one, so its frequency is lower. The war exclusion drops
+war-year starts from both the episodes and the exposure.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Sensitivity of the mean ten-year loss per downturn and of the share of it that a
+0.1 percent annual cost requires. Trend is the pre-episode linear trend. Peak is the flat
+prior-peak path. Annual loss is frequency times mean trend loss, in percent of GDP per year.
+A dash marks a negative mean loss, where the share is undefined. Point estimates only.}
+\label{tab:sensitivity}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Loss definition & Rate & $N$ & $c/\lambda$ & Trend loss & Trend share & Peak share & Annual loss \\
+\midrule
+Baseline (floored, overlapping) & 3\% & 274 & 0.87 & 86.8 & 1.01\% & 3.53\% & 9.9 \\
+No floor & 3\% & 274 & 0.87 & 65.7 & 1.33\% & -- & 7.5 \\
+De-duplicated, floored & 3\% & 274 & 0.87 & 63.5 & 1.38\% & 3.97\% & 7.3 \\
+Non-overlapping, floored & 3\% & 144 & 1.66 & 101.0 & 1.65\% & 6.71\% & 6.1 \\
+War starts excluded, floored & 3\% & 246 & 0.89 & 75.6 & 1.17\% & 4.93\% & 8.5 \\
+De-duplicated, floored, no war & 3\% & 246 & 0.89 & 50.5 & 1.76\% & 5.92\% & 5.7 \\
+No floor, de-duplicated, no war & 3\% & 246 & 0.89 & 39.5 & 2.24\% & -- & 4.5 \\
+\midrule
+Baseline (floored, overlapping) & 0\% & 274 & 0.87 & 104.0 & 0.84\% & 3.05\% & 11.9 \\
+No floor & 0\% & 274 & 0.87 & 78.3 & 1.12\% & -- & 9.0 \\
+De-duplicated, floored & 0\% & 274 & 0.87 & 74.6 & 1.17\% & 3.47\% & 8.5 \\
+Non-overlapping, floored & 0\% & 144 & 1.66 & 121.0 & 1.37\% & 5.84\% & 7.3 \\
+War starts excluded, floored & 0\% & 246 & 0.89 & 90.8 & 0.98\% & 4.26\% & 10.2 \\
+De-duplicated, floored, no war & 0\% & 246 & 0.89 & 59.1 & 1.50\% & 5.20\% & 6.7 \\
+No floor, de-duplicated, no war & 0\% & 246 & 0.89 & 46.3 & 1.92\% & -- & 5.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Each correction lowers the trend loss, but the implied annual trend loss stays between 4.5
+and 11.9 percent of GDP. That is still implausibly large, which points to the five-year
+linear trend as a further source of bias. Against the flat prior peak, signed gaps give a
+negative mean loss: on average, output over the ten years after the peak is above the prior
+peak.
+The required share therefore ranges from 0.84 to 6.71 percent across floored definitions
+and is undefined for signed gaps against the prior peak. Because the share depends on the
+loss definition, I report only the 0.87 arithmetic as a result.
+
+\section{Limits}
+The reproduction checks the archived \texttt{table8.tex} in the authors' replication archive,
+in Python, not in Stata. I did not compare it with the printed 2013 journal table. The
+fragility results use 14 to 18 country clusters, which makes clustered inference fragile.
+The vintage comparison cannot separate data revision from a possible change in the credit
+definition, and it has no formal test of the difference. The dating comparison cannot
+separate the dating rule from sample composition. All estimates are conditional
+associations. Selecting on output contractions can bias them. The severity outcomes in
+Table~\ref{tab:severity} use the same floored and overlapping loss windows as the
+break-even section.
+
+The break-even number is arithmetic. It does not estimate $D(m)$, the effect of a policy on
+downturn loss, as \citet{svensson2017} and \citet{bgnn2020} do for crisis outcomes and
+growth-at-risk. A user of the threshold must supply that estimate from other evidence, and
+must also supply a credible counterfactual loss per downturn.
+
+\section{Conclusion}
+An independent implementation of the aggregate \citet{jst2013} Table 8 matches the authors'
+archived output at three decimals. On release 6 data, the credit-severity association is
+imprecise. Its size changes with the data vintage. Its sign changes only with the
+subsample, the control set, or the episode rule. No severity coefficient survives a
+Holm adjustment. By construction, a 0.1 percent annual cost requires 0.87 GDP-percent-years
+of avoided loss per downturn. The measured loss per downturn is too inflated to turn that
+number into a credible share. Whether any policy achieves the reduction is a separate
+question that this note does not answer.
+
+\section*{Data and code availability}
+The note does not redistribute third-party data. \texttt{experiments/acquire\_data.py}
+downloads the JST release 6 file (CC BY-NC-SA 4.0) and the authors' replication archive
+(no license stated). It checks each file against a recorded SHA-256 hash and writes
+\texttt{data/source\_manifest.json}. The analysis scripts, run records, and the README
+commands are in the project folder. Each run folder records its command, inputs, code
+hashes, outputs, and environment.
+
+\begin{thebibliography}{30}
+\bibitem[Baron et~al.(2021)]{baron2021}
+Baron, M., Verner, E., and Xiong, W. (2021).
+\newblock Banking crises without panics.
+\newblock \emph{Quarterly Journal of Economics}, 136(1), 51--113.
+\newblock \url{https://doi.org/10.1093/qje/qjaa034}.
+
+\bibitem[Bordo and Haubrich(2017)]{bordohaubrich2017}
+Bordo, M.~D., and Haubrich, J.~G. (2017).
+\newblock Deep recessions, fast recoveries, and financial crises: Evidence from the American
+  record.
+\newblock \emph{Economic Inquiry}, 55(1), 527--541.
+\newblock \url{https://doi.org/10.1111/ecin.12374}.
+
+\bibitem[Bridges et~al.(2017)]{bridges2017}
+Bridges, J., Jackson, C., and McGregor, D. (2017).
+\newblock Down in the slumps: The role of credit in five decades of recessions.
+\newblock Bank of England Staff Working Paper No. 659.
+\newblock \url{https://www.bankofengland.co.uk/working-paper/2017/down-in-the-slumps-the-role-of-credit-in-five-decades-of-recessions}.
+
+\bibitem[Brand\~ao-Marques et~al.(2020)]{bgnn2020}
+Brand\~ao-Marques, L., Gelos, R.~G., Narita, M., and Nier, E. (2020).
+\newblock Leaning against the wind: A cost-benefit analysis for an integrated policy
+  framework.
+\newblock IMF Working Paper WP/20/123, International Monetary Fund.
+\newblock \url{https://doi.org/10.5089/9781513549651.001}.
+
+\bibitem[Claessens et~al.(2012)]{claessens2012}
+Claessens, S., Kose, M.~A., and Terrones, M.~E. (2012).
+\newblock How do business and financial cycles interact?
+\newblock \emph{Journal of International Economics}, 87(1), 178--190.
+\newblock \url{https://doi.org/10.1016/j.jinteco.2011.11.008}.
+
+\bibitem[Gourinchas and Obstfeld(2012)]{gourinchasobstfeld2012}
+Gourinchas, P.-O., and Obstfeld, M. (2012).
+\newblock Stories of the twentieth century for the twenty-first.
+\newblock \emph{American Economic Journal: Macroeconomics}, 4(1), 226--265.
+\newblock \url{https://doi.org/10.1257/mac.4.1.226}.
+
+\bibitem[Greenwood et~al.(2022)]{greenwood2022}
+Greenwood, R., Hanson, S.~G., Shleifer, A., and S{\o}rensen, J.~A. (2022).
+\newblock Predictable financial crises.
+\newblock \emph{Journal of Finance}, 77(2), 863--921.
+\newblock \url{https://doi.org/10.1111/jofi.13105}.
+
+\bibitem[Jord\`a et~al.(2022)]{jkst2022}
+Jord\`a, \`O., Kornejew, M., Schularick, M., and Taylor, A.~M. (2022).
+\newblock Zombies at large? Corporate debt overhang and the macroeconomy.
+\newblock \emph{Review of Financial Studies}, 35(10), 4561--4586.
+\newblock \url{https://doi.org/10.1093/rfs/hhac018}.
+
+\bibitem[Jord\`a et~al.(2015a)]{jst2015bubbles}
+Jord\`a, \`O., Schularick, M., and Taylor, A.~M. (2015).
+\newblock Leveraged bubbles.
+\newblock \emph{Journal of Monetary Economics}, 76(Supplement), S1--S20.
+\newblock \url{https://doi.org/10.1016/j.jmoneco.2015.08.005}.
+
+\bibitem[Jord\`a et~al.(2016a)]{jst2016mortgaging}
+Jord\`a, \`O., Schularick, M., and Taylor, A.~M. (2016).
+\newblock The great mortgaging: Housing finance, crises and business cycles.
+\newblock \emph{Economic Policy}, 31(85), 107--152.
+\newblock \url{https://doi.org/10.1093/epolic/eiv017}.
+
+\bibitem[Jord\`a et~al.(2016b)]{jst2016sovereigns}
+Jord\`a, \`O., Schularick, M., and Taylor, A.~M. (2016).
+\newblock Sovereigns versus banks: Credit, crises, and consequences.
+\newblock \emph{Journal of the European Economic Association}, 14(1), 45--79.
+\newblock \url{https://doi.org/10.1111/jeea.12144}.
+
+\bibitem[Jord\`a et~al.(2013)]{jst2013}
+Jord\`a, \`O., Schularick, M., and Taylor, A.~M. (2013).
+\newblock When credit bites back.
+\newblock \emph{Journal of Money, Credit and Banking}, 45(S2), 3--28.
+\newblock \url{https://doi.org/10.1111/jmcb.12069}.
+
+\bibitem[Jord\`a et~al.(2017)]{jstdatabase}
+Jord\`a, \`O., Schularick, M., and Taylor, A.~M. (2017).
+\newblock Macrofinancial history and the new business cycle facts.
+\newblock \emph{NBER Macroeconomics Annual}, 31, 213--263.
+\newblock \url{https://doi.org/10.1086/690241}. Database release 6, CC BY-NC-SA 4.0.
+
+\bibitem[Jord\`a et~al.(2015b)]{jstcode}
+Jord\`a, \`O., Schularick, M., and Taylor, A.~M. (2015).
+\newblock ``When Credit Bites Back'' replication archive, version of 14 August 2015.
+\newblock \url{https://www.moritzschularick.com/academic/datasets-and-codes/}.
+
+\bibitem[Krishnamurthy and Muir(2025)]{krishnamurthymuir2025}
+Krishnamurthy, A., and Muir, T. (2025).
+\newblock How credit cycles across a financial crisis.
+\newblock \emph{Journal of Finance}, 80(3), 1339--1378.
+\newblock \url{https://doi.org/10.1111/jofi.13431}.
+
+\bibitem[Mian et~al.(2017)]{msv2017}
+Mian, A., Sufi, A., and Verner, E. (2017).
+\newblock Household debt and business cycles worldwide.
+\newblock \emph{Quarterly Journal of Economics}, 132(4), 1755--1817.
+\newblock \url{https://doi.org/10.1093/qje/qjx017}.
+
+\bibitem[M\"uller and Verner(2024)]{mullerverner2024}
+M\"uller, K., and Verner, E. (2024).
+\newblock Credit allocation and macroeconomic fluctuations.
+\newblock \emph{Review of Economic Studies}, 91(6), 3645--3676.
+\newblock \url{https://doi.org/10.1093/restud/rdad112}.
+
+\bibitem[Richter et~al.(2021)]{rsw2021}
+Richter, B., Schularick, M., and Wachtel, P. (2021).
+\newblock When to lean against the wind.
+\newblock \emph{Journal of Money, Credit and Banking}, 53(1), 5--39.
+\newblock \url{https://doi.org/10.1111/jmcb.12701}.
+
+\bibitem[Romer and Romer(2017)]{romerromer2017}
+Romer, C.~D., and Romer, D.~H. (2017).
+\newblock New evidence on the aftermath of financial crises in advanced countries.
+\newblock \emph{American Economic Review}, 107(10), 3072--3118.
+\newblock \url{https://doi.org/10.1257/aer.20150320}.
+
+\bibitem[Schularick and Taylor(2012)]{schularicktaylor2012}
+Schularick, M., and Taylor, A.~M. (2012).
+\newblock Credit booms gone bust: Monetary policy, leverage cycles, and financial crises,
+  1870--2008.
+\newblock \emph{American Economic Review}, 102(2), 1029--1061.
+\newblock \url{https://doi.org/10.1257/aer.102.2.1029}.
+
+\bibitem[Sufi and Taylor(2022)]{sufitaylor2022}
+Sufi, A., and Taylor, A.~M. (2022).
+\newblock Financial crises: A survey.
+\newblock In \emph{Handbook of International Economics}, Vol.~6, 291--340. Elsevier.
+\newblock \url{https://doi.org/10.1016/bs.hesint.2022.02.012}.
+
+\bibitem[Summers(2017)]{summers2017}
+Summers, P.~M. (2017).
+\newblock Credit booms gone bust: Replication of {S}chularick and {T}aylor ({AER} 2012).
+\newblock \emph{Journal of Applied Econometrics}, 32(5), 1033--1038.
+\newblock \url{https://doi.org/10.1002/jae.2554}.
+
+\bibitem[Svensson(2017)]{svensson2017}
+Svensson, L.~E.~O. (2017).
+\newblock Cost-benefit analysis of leaning against the wind.
+\newblock \emph{Journal of Monetary Economics}, 90, 193--213.
+\newblock \url{https://doi.org/10.1016/j.jmoneco.2017.07.004}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,29 @@
+variant,discount_rate_pct,counterfactual,episodes,eligible_country_years,frequency_per_country_year,required_avoided_loss_pct_gdp_years,mean_loss_pct_gdp_years,required_share_of_mean_loss_pct,implied_annual_loss_pct_gdp
+"baseline: floored, overlapping, all starts",0.000000,pre-episode linear trend,274,2394,0.114453,0.873723,103.986390,0.840228,11.901533
+"baseline: floored, overlapping, all starts",0.000000,flat pre-downturn peak,274,2394,0.114453,0.873723,28.605423,3.054395,3.273971
+no floor (signed gaps),0.000000,pre-episode linear trend,274,2394,0.114453,0.873723,78.345055,1.115224,8.966811
+no floor (signed gaps),0.000000,flat pre-downturn peak,274,2394,0.114453,0.873723,-34.711169,,-3.972790
+"de-duplicated years, floored",0.000000,pre-episode linear trend,274,2394,0.114453,0.873723,74.552149,1.171962,8.532702
+"de-duplicated years, floored",0.000000,flat pre-downturn peak,274,2394,0.114453,0.873723,25.168509,3.471491,2.880606
+"non-overlapping subset, floored",0.000000,pre-episode linear trend,144,2394,0.060150,1.662500,121.035749,1.373561,7.280346
+"non-overlapping subset, floored",0.000000,flat pre-downturn peak,144,2394,0.060150,1.662500,28.470083,5.839463,1.712486
+"war starts excluded, floored",0.000000,pre-episode linear trend,246,2183,0.112689,0.887398,90.836447,0.976919,10.236265
+"war starts excluded, floored",0.000000,flat pre-downturn peak,246,2183,0.112689,0.887398,20.827275,4.260751,2.347004
+"no floor, de-duplicated, war excluded",0.000000,pre-episode linear trend,246,2183,0.112689,0.887398,46.280532,1.917433,5.215305
+"no floor, de-duplicated, war excluded",0.000000,flat pre-downturn peak,246,2183,0.112689,0.887398,-23.020417,,-2.594147
+"floored, de-duplicated, war excluded",0.000000,pre-episode linear trend,246,2183,0.112689,0.887398,59.114161,1.501160,6.661513
+"floored, de-duplicated, war excluded",0.000000,flat pre-downturn peak,246,2183,0.112689,0.887398,17.074632,5.197174,1.924122
+"baseline: floored, overlapping, all starts",3.000000,pre-episode linear trend,274,2394,0.114453,0.873723,86.774208,1.006892,9.931551
+"baseline: floored, overlapping, all starts",3.000000,flat pre-downturn peak,274,2394,0.114453,0.873723,24.777611,3.526259,2.835867
+no floor (signed gaps),3.000000,pre-episode linear trend,274,2394,0.114453,0.873723,65.745548,1.328946,7.524762
+no floor (signed gaps),3.000000,flat pre-downturn peak,274,2394,0.114453,0.873723,-26.027615,,-2.978933
+"de-duplicated years, floored",3.000000,pre-episode linear trend,274,2394,0.114453,0.873723,63.498501,1.375974,7.267581
+"de-duplicated years, floored",3.000000,flat pre-downturn peak,274,2394,0.114453,0.873723,22.027582,3.966494,2.521118
+"non-overlapping subset, floored",3.000000,pre-episode linear trend,144,2394,0.060150,1.662500,101.048813,1.645244,6.078124
+"non-overlapping subset, floored",3.000000,flat pre-downturn peak,144,2394,0.060150,1.662500,24.767280,6.712485,1.489761
+"war starts excluded, floored",3.000000,pre-episode linear trend,246,2183,0.112689,0.887398,75.561562,1.174404,8.514954
+"war starts excluded, floored",3.000000,flat pre-downturn peak,246,2183,0.112689,0.887398,17.989172,4.932958,2.027181
+"no floor, de-duplicated, war excluded",3.000000,pre-episode linear trend,246,2183,0.112689,0.887398,39.549237,2.243781,4.456762
+"no floor, de-duplicated, war excluded",3.000000,flat pre-downturn peak,246,2183,0.112689,0.887398,-17.773610,,-2.002890
+"floored, de-duplicated, war excluded",3.000000,pre-episode linear trend,246,2183,0.112689,0.887398,50.456494,1.758740,5.685890
+"floored, de-duplicated, war excluded",3.000000,flat pre-downturn peak,246,2183,0.112689,0.887398,14.991234,5.919449,1.689347

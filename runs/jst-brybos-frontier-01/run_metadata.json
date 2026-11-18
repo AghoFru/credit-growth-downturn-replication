@@ -1,0 +1,66 @@
+{
+  "analysis": "JST Bry-Boschan recession-phase break-even sensitivity",
+  "command": "uv run python experiments/build_jst_brybos_frontier.py",
+  "random_seed": 17,
+  "bootstrap_draws": 2000,
+  "method": {
+    "panel": "original-vintage author archive private.dta",
+    "events": "core normal and financial Bry-Boschan peak rows paired to the next trough before the next peak",
+    "exposure": "core-window country-years with five complete prior GDP observations",
+    "damage": "sum positive annual output gaps from peak+1 through the next trough, against a five-year pre-peak log trend or flat peak",
+    "discount_rates_pct": [
+      0,
+      3,
+      7
+    ],
+    "frontier": "annual output-equivalent cost divided by event rate, with frequency held fixed",
+    "uncertainty": "country-cluster bootstrap, resampling 14 countries with replacement",
+    "interpretation": "conditional break-even sensitivity, not a causal policy estimate"
+  },
+  "inputs": {
+    "archive_zip": {
+      "path": "runs/jst-2013-benchmark-01/source/WCBB_replication.zip",
+      "sha256": "5e61b6492115bf2adc13ac63f86bb4e7846dda47c5b0c07dab687ed1dd298899",
+      "redistribution_license": "not identified in the archive"
+    },
+    "panel": {
+      "path": "runs/jst-2013-benchmark-01/source/archive/WCBB_replication_14aug2015/data/private.dta",
+      "sha256": "8f0346f6763d0debfadd381adfa32b02c5e81057acabe8396fbe50514e9c6908"
+    },
+    "original_source": {
+      "runs/jst-2013-benchmark-01/source/archive/WCBB_replication_14aug2015/programs/data_Oct2012.do": "4c730d3d1a74d2daae2908c733e3252b6303d1cc753e2cbdc4ab4786b2be5b00",
+      "runs/jst-2013-benchmark-01/source/archive/WCBB_replication_14aug2015/auxprograms/annual_brybos_loop.do": "394e7fe78b1e30413dd4527108ed4978b042055f3b655c20fce258e6c8df5629",
+      "runs/jst-2013-benchmark-01/source/archive/WCBB_replication_14aug2015/auxprograms/peak_dummies_August2012Alan.do": "d2cb79d9286702f3462d40f33e7018746f2ed87eaabdc8651009cc43749599cd",
+      "runs/jst-2013-benchmark-01/source/archive/WCBB_replication_14aug2015/tables/table8.tex": "4fa3d8cce35d073bed7fbe9160d8d0916ef97134f8fef7b26245b7ea08770977"
+    }
+  },
+  "code": {
+    "path": "experiments/build_jst_brybos_frontier.py",
+    "sha256": "52bf879f6bc7a5be475235146495968e370a02915762b43fdd611b4d0452c5a1"
+  },
+  "outputs": {
+    "event_damage": {
+      "path": "runs/jst-brybos-frontier-01/results/jst_brybos_phase_event_damage.csv",
+      "sha256": "597fc4d67030f494981efa31b854c4c451fc7f37d12c8f374a37620901aa9655"
+    },
+    "frontier": {
+      "path": "runs/jst-brybos-frontier-01/results/jst_brybos_phase_frontier.csv",
+      "sha256": "9dfaaa5940f10f8d15cd776bd3d80757ffc18faaee9140fdd17f766b1b7cabac"
+    },
+    "bootstrap_draws": {
+      "path": "runs/jst-brybos-frontier-01/results/jst_brybos_phase_bootstrap.csv",
+      "sha256": "d66374dc7e30ed42a82d277d62cb3b33ace7aa491d55215e46f3a51536ec7b26"
+    },
+    "uncertainty": {
+      "path": "runs/jst-brybos-frontier-01/results/jst_brybos_phase_uncertainty.csv",
+      "sha256": "c8395dc332781a6b0ad46e5a66869cecf052d97ace079cdab85384cf10a404cc"
+    }
+  },
+  "environment": {
+    "python": "3.14.6",
+    "pandas": "3.1.1",
+    "numpy": "2.5.4",
+    "platform": "macOS-26.1-arm64-arm-64bit-Mach-O",
+    "code_version": "not recorded, project has no Git metadata"
+  }
+}

@@ -1,0 +1,7 @@
+sample,events,countries,start_year_min,start_year_max,normal_jst_events,financial_jst_events
+"annual, full R6 coverage",299,18,1870,2014,0,0
+"annual, common country-period coverage",225,14,1870,2002,0,0
+"JST, common country-period coverage",223,14,1870,2002,173,50
+exact-date overlap,182,14,1870,2002,0,0
+"annual-only dates, common coverage",43,14,1888,1947,0,0
+"JST-only dates, common coverage",41,13,1875,1994,32,9

@@ -1,0 +1,70 @@
+{
+  "analysis": "JST Table 8 original-vintage and R6 matched-event comparison",
+  "command": "uv run python experiments/compare_jst2013_r6.py",
+  "random_seed": null,
+  "specification": {
+    "chronology": "original 2013 core Bry-Boschan peak years and normal/financial labels",
+    "original_full_sample": "author private.dta, original Table 8 transformations and controls",
+    "common_sample": "the 116 original Table 8 events with complete inputs under both vintages",
+    "r6_all_sample": "all original-date core events with complete R6 model inputs",
+    "r6_excess_credit": "100 times the peak-to-prior-trough tloans/GDP change divided by original expansion duration",
+    "r6_controls": "originally defined seven controls, standardized over the matched 14-country 1870-2008 panel, with one annual lag",
+    "standard_errors": "classical OLS, matching Stata reg default",
+    "interpretation": "common-sample vintage comparison is descriptive, not causal"
+  },
+  "samples": {
+    "original_full": {
+      "n": 121,
+      "normal": 92,
+      "financial": 29
+    },
+    "original_common": {
+      "n": 116,
+      "normal": 88,
+      "financial": 28
+    },
+    "r6_common": {
+      "n": 116,
+      "normal": 88,
+      "financial": 28
+    },
+    "r6_all": {
+      "n": 148,
+      "normal": 116,
+      "financial": 32
+    }
+  },
+  "inputs": {
+    "original_panel": {
+      "path": "runs/jst-2013-benchmark-01/source/archive/WCBB_replication_14aug2015/data/private.dta",
+      "sha256": "8f0346f6763d0debfadd381adfa32b02c5e81057acabe8396fbe50514e9c6908"
+    },
+    "r6_panel": {
+      "path": "data/raw/JSTdatasetR6.dta",
+      "sha256": "b0ebb74a8d1b5b1bc9033fc46a6dcc578736afff8ce1e1086b7840f2649e79b3"
+    },
+    "original_source": {
+      "runs/jst-2013-benchmark-01/source/archive/WCBB_replication_14aug2015/programs/data_Oct2012.do": "4c730d3d1a74d2daae2908c733e3252b6303d1cc753e2cbdc4ab4786b2be5b00",
+      "runs/jst-2013-benchmark-01/source/archive/WCBB_replication_14aug2015/programs/AMTregressions_Oct2012.do": "350e993d85bdc9de52562cea73e83381d11fb8422524885257ee3dc06ecb6cbb",
+      "runs/jst-2013-benchmark-01/source/archive/WCBB_replication_14aug2015/auxprograms/annual_brybos_loop.do": "394e7fe78b1e30413dd4527108ed4978b042055f3b655c20fce258e6c8df5629",
+      "runs/jst-2013-benchmark-01/source/archive/WCBB_replication_14aug2015/auxprograms/peak_dummies_August2012Alan.do": "d2cb79d9286702f3462d40f33e7018746f2ed87eaabdc8651009cc43749599cd",
+      "runs/jst-2013-benchmark-01/source/archive/WCBB_replication_14aug2015/tables/table8.tex": "4fa3d8cce35d073bed7fbe9160d8d0916ef97134f8fef7b26245b7ea08770977"
+    }
+  },
+  "code": {
+    "path": "experiments/compare_jst2013_r6.py",
+    "sha256": "13fe349e56877631964cf138aa45af216cd3b0c5cd28412efaa8c40b0ab8b1d9"
+  },
+  "output": {
+    "path": "runs/jst-r6-vintage-compare-01/results/jst_table8_vintage_comparison.csv",
+    "sha256": "94c2183b93687bf279061326288e348b21515933c82a148b7d1fc8d47b2d6437"
+  },
+  "environment": {
+    "python": "3.14.6",
+    "pandas": "3.1.1",
+    "numpy": "2.5.4",
+    "statsmodels": "0.15.0",
+    "platform": "macOS-26.1-arm64-arm-64bit-Mach-O",
+    "code_version": "not recorded, project has no Git metadata"
+  }
+}
